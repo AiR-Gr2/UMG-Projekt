@@ -1,8 +1,8 @@
-# UMG-Projekt
-## Warystor
+# 🏫 UMG-Projekt
+## ⚡ Warystor
 dane prosze
 
-## Fotorezystor 
+## 💡 Fotorezystor 
 blagam dane
 
 # 🚀 Uruchamianie projektu
@@ -12,11 +12,15 @@ blagam dane
 
 ## 🛠 Instalacja
 Najpierw pobierz wymagane zależności:
-```npm install```
+```console
+npm install
+```
 ## ▶️ Uruchamianie serwera
 Aby uruchomić serwer, wykonaj:
-```node server.js```
+```console
+node server.js
+```
 Serwer domyślnie uruchomi sie na `http://localhost:3060/`.
 ## 🔧 Dodatkowe informacje
-- Pliki statyczne (CSS, JavaScript) znajdują się w katalogu frontend/static.
-- Serwer obsługuje dynamiczne ścieżki i zawsze zwraca index.html dla wszystkich tras.
+- Pliki statyczne (CSS, JavaScript) znajdują się w katalogu `frontend/static`.
+- Serwer obsługuje dynamiczne ścieżki i zawsze zwraca `index.html` dla wszystkich tras.
