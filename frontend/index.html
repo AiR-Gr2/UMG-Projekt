@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/index.css" />
+    <title>Półprzewodnikowe elementy</title>
+  </head>
+
+  <body>
+    <div class="mainBox">
+      <span class="mainBoxName">PÓŁPRZEWODNIKOWE ELEMENTY BEZZŁĄCZOWE</span>
+      <div class="midRow">
+        <div class="columnFlex">
+          <img class="trojkat" src="/static/img/trojkat.png" />
+          <img class="knob1" src="/static/img/knob.png" />
+        </div>
+        <div class="columnFlex">
+          <span class="desc">Termostat</span>
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <span class="desc">Oświetlenie fotorezystora</span>
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="columnFlex2">
+          <span class="desc" id="knob2desc">Badany element</span>
+          <div class="rowFlex">
+            <img class="knob2" src="/static/img/knob.png" />
+            <div class="textGroup">
+              <span class="knobText">Fotorezystor</span>
+              <span class="knobTextSecondary">Warystor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottomRow">
+        <div class="columnFlex">
+          <div class="led" id="networkLed"></div>
+          <span class="desc">Sieć</span>
+          <label class="switch">
+            <input type="checkbox" id="networkSwitch" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="rowFlex">
+          <button class="roundButton"></button>
+          <p class="unit">A</p>
+          <button class="roundButton"></button>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <button class="roundButton"></button>
+          <p class="unit">V</p>
+          <button class="roundButton"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stuffBox">
+      <div class="imageOverlay">
+        <img class="multimeter1" src="/static/img/multimeter_no_knob.png" />
+        <img class="multimeterKnob1" src="/static/img/sknob.png" />
+      </div>
+
+      <div class="chartContainer">
+        <canvas id="chart"></canvas>
+      </div>
+
+      <div class="imageOverlay">
+        <img class="multimeter2" src="/static/img/multimeter_no_knob.png" />
+        <img class="multimeterKnob2" src="/static/img/sknob.png" />
+      </div>
+    </div>
+
+    <script type="module" src="/static/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+</html>

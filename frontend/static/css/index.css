@@ -1,0 +1,247 @@
+body {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center; /* Wyśrodkowanie boxów w poziomie */
+  gap: 20px;
+}
+
+.mainBox {
+  margin-top: 40px;
+  border: 2px solid black;
+  width: 60%;
+  height: 60%;
+  justify-content: center;
+  justify-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainBoxName {
+  font-size: 32px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.midrow {
+  display: flex;
+  flex-direction: row;
+}
+
+.columnFlex {
+  margin-left: 50px;
+  width: 200px;
+  height: 200px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rowFlex {
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.trojkat {
+  width: 150px;
+  height: 70px;
+}
+
+.knob1 {
+  width: 100px;
+  height: 100px;
+}
+
+.knob2 {
+  width: 100px;
+  height: 100px;
+}
+
+.switch {
+  align-self: center;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #b05056;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #b05056;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.desc {
+  margin-top: 10px;
+  align-self: center;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.bottomRow {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.roundButton {
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.roundButton:hover {
+  cursor: pointer;
+  background-color: rgb(105, 102, 102);
+}
+
+.columnFlex2 {
+  margin-left: 50px;
+  width: 300px;
+  height: 200px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  align-items: flex-start;
+}
+
+.knobText {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.knobTextSecondary {
+  font-size: 20px;
+}
+
+#knob2desc {
+  margin-right: 110px;
+}
+
+.unit {
+  font-size: 20px;
+}
+
+.stuffBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 80%;
+  margin: 20px auto; /* Dodatkowy margines z góry */
+  position: relative; /* Umożliwia kontrolę pozycji */
+  top: 20px; /* Przesunięcie w dół */
+}
+
+.imageOverlay {
+  position: relative;
+  width: 300px; /* Szerokość kontenera dla każdego multimetru */
+  height: 600px; /* Wysokość kontenera */
+}
+
+.multimeter1,
+.multimeter2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Dopasowanie do kontenera */
+  height: 100%; /* Dopasowanie do kontenera */
+  width: 296px;
+  height: 588px;
+}
+
+.multimeterKnob1,
+.multimeterKnob2 {
+  position: absolute;
+  transform-origin: center;
+  top: 260px; /* Jednolita pozycja pokrętła */
+  left: 60px; /* Pozycjonowanie pokrętła */
+  width: 175px;
+  height: 175px;
+}
+
+.chartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%; /* Wypełnia większą część szerokości */
+  height: 300px; /* Większa wysokość dla dużego wykresu */
+  margin-top: 150px; /* Odstęp od sekcji z multimetrami */
+  margin-bottom: 20px; /* Odstęp od ewentualnych kolejnych elementów */
+  border: 2px solid black;
+}
+
+/* Styl dla diody LED */
+.led {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; /* Okrągły kształt */
+  background-color: #ccc; /* Domyślnie szara (wyłączona) */
+  margin-top: 10px;
+  transition: background-color 0.3s ease; /* Płynna zmiana koloru */
+}
+
+/* Gdy sieć włączona (LED świeci na zielono) */
+.led.on {
+  background-color: green;
+}
