@@ -1,7 +1,6 @@
 # 🏫 UMG-Projekt
 ## ⚡ Warystor
 dane prosze
-jazda dane z chatugpt jak maja byc losowe?
 
 ## 💡 Fotorezystor 
 blagam dane
