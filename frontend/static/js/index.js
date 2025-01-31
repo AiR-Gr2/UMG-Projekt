@@ -16,6 +16,21 @@ const chartTitles = {
   VARISTOR: "Charakterystyka warystora",
 };
 
+const chartData = {
+  OFF: {
+    labels: [0, 1, 2, 3, 4, 5],
+    data: [0, 0, 0, 0, 0, 0],
+  },
+  PHOTORESISTOR: {
+    labels: [0, 1, 2, 3, 4, 5],
+    data: [0, 0.2, 0.5, 1.2, 2.4, 4.0],
+  },
+  VARISTOR: {
+    labels: [0, 10, 20, 30, 40, 50],
+    data: [0, 0.1, 0.3, 0.7, 1.5, 2.8],
+  },
+};
+
 const multimeterMode = {
   0: { degree: 0, mode: "OFF" },
   1: { degree: 96, mode: "DCV 200m" },
@@ -56,7 +71,7 @@ knob2.addEventListener("mousedown", () => {
   }
 
   console.log("Current Mode:", currentMode); // sprawdzanko
-  updateChartTitleByMode();
+  updateChartByMode();
 });
 
 multimeterKnob1.addEventListener("mousedown", () => {
@@ -83,11 +98,11 @@ const ctx = document.getElementById("chart").getContext("2d");
 chartInstance = new Chart(ctx, {
   type: "line",
   data: {
-    labels: [0, 1, 2, 3, 4, 5],
+    labels: chartData.OFF.labels,
     datasets: [
       {
         label: "Charakterystyka I(U)",
-        data: [0, 1, 4, 9, 16, 25],
+        data: chartData.OFF.data,
         borderColor: "rgba(75, 192, 192, 1)",
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         borderWidth: 2,
@@ -99,7 +114,7 @@ chartInstance = new Chart(ctx, {
     plugins: {
       title: {
         display: true,
-        text: "Charakterystyka niedostępna",
+        text: chartTitles.OFF,
         font: {
           size: 25, // Zwiększenie rozmiaru czcionki tytułu
           weight: "bold", // Grubość czcionki
@@ -127,10 +142,13 @@ chartInstance = new Chart(ctx, {
   },
 });
 
-function updateChartTitleByMode() {
+function updateChartByMode() {
   const title = chartTitles[currentMode] || "Charakterystyka niedostępna";
+  const data = chartData[currentMode] || chartData.OFF;
   console.log("Setting chart title:", title); // sprawdzanko
   if (chartInstance) {
+    chartInstance.data.labels = data.labels;
+    chartInstance.data.datasets[0].data = data.data;
     chartInstance.options.plugins.title.text = title;
   }
   chartInstance.update();
@@ -157,7 +175,7 @@ function updateLedState() {
     currentMultimeterMode = multimeterMode[0].mode;
     currentMultimeterMode2 = multimeterMode[0].mode;
 
-    updateChartTitleByMode();
+    updateChartByMode();
 
     document
       .querySelectorAll('input[type="checkbox"]:not(#networkSwitch)')
