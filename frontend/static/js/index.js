@@ -141,11 +141,48 @@ const networkSwitch = document.getElementById("networkSwitch");
 const networkLed = document.getElementById("networkLed");
 
 function updateLedState() {
-  if (networkSwitch.checked) {
+  const isNetworkOn = networkSwitch.checked;
+
+  if (isNetworkOn) {
     networkLed.classList.add("on");
+    document
+      .querySelectorAll('input[type="checkbox"]:not(#networkSwitch)')
+      .forEach((checkbox) => {
+        checkbox.disabled = false;
+      });
   } else {
     networkLed.classList.remove("on");
+
+    currentMode = mode[0];
+    currentMultimeterMode = multimeterMode[0].mode;
+    currentMultimeterMode2 = multimeterMode[0].mode;
+
+    updateChartTitleByMode();
+
+    document
+      .querySelectorAll('input[type="checkbox"]:not(#networkSwitch)')
+      .forEach((checkbox) => {
+        checkbox.checked = false;
+        checkbox.disabled = true;
+      });
+
+    rotationsKnob1 = 1;
+    rotationsKnob2 = 1;
+    rotationsMultimeterKnob1 = 1;
+    rotationsMultimeterKnob2 = 1;
+
+    knob1.style.transform = "rotate(0deg)";
+    knob2.style.transform = "rotate(0deg)";
+    multimeterKnob1.style.transform = "rotate(0deg)";
+    multimeterKnob2.style.transform = "rotate(0deg)";
   }
+
+  knob1.style.pointerEvents = isNetworkOn ? "auto" : "none";
+  knob2.style.pointerEvents = isNetworkOn ? "auto" : "none";
+  multimeterKnob1.style.pointerEvents = isNetworkOn ? "auto" : "none";
+  multimeterKnob2.style.pointerEvents = isNetworkOn ? "auto" : "none";
+
+  console.log("Network state:", isNetworkOn ? "ON" : "OFF");
 }
 
 networkSwitch.addEventListener("change", updateLedState);
