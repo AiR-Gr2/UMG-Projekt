@@ -245,3 +245,21 @@ input:checked + .slider:before {
 .led.on {
   background-color: green;
 }
+
+.multimeter-display {
+  position: relative;
+  top: 10.25%; 
+  width: 70%;
+  left: 10%;
+  transform: none;
+  font-family: 'Digital-7 Italic', sans-serif;
+  font-size: 80px;
+  text-align: right;
+  margin-left: -5px;
+  color: black; 
+  background-color: #5c6657; 
+  padding: 5px;
+  border-radius: 5px;
+  display: block; 
+  margin-top: 5px; 
+}
