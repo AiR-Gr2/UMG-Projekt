@@ -82,43 +82,83 @@ let chartInstance;
 let multimeterDisplay1 = document.getElementById("multimeter1-value");
 let multimeterDisplay2 = document.getElementById("multimeter2-value");
 let multimeter1Active = false;
-let multimeter2Active = true;
+let multimeter2Active = false;
 let resistance = 1000;
 
-function getDisplayValue(currentMultimeterMode) {
-  if (currentMode === "OFF") return "OFF";
-  switch (currentMultimeterMode) {
-    case "OFF":
-      return "OFF";
-    case "DCV 200m":
-      return calculateDisplayValue(getVoltage(), 0.2, 3);
-    case "DCV 2":
-      return calculateDisplayValue(getVoltage(), 2, 3);
-    case "DCV 20":
-      return calculateDisplayValue(getVoltage(), 20, 2);
-    case "DCV 200":
-      return calculateDisplayValue(getVoltage(), 200, 1);
-    case "DCV 1000":
-      return calculateDisplayValue(getVoltage(), 1000, 0);
-    case "DCA 20":
-      return calculateDisplayValue(getVoltage() / resistance, 20, 1);
-    case "DCA 2":
-      return calculateDisplayValue(getVoltage() / resistance, 2, 2);
-    case "DCA 200m":
-      return calculateDisplayValue(getVoltage() / resistance, 0.2, 3);
-    case "DCA 20m":
-      return calculateDisplayValue(getVoltage() / resistance, 0.02, 3);
-    case "DCA 2m":
-      return calculateDisplayValue(getVoltage() / resistance, 0.002, 3);
-    case "DCA 200u":
-      return calculateDisplayValue(getVoltage() / resistance, 0.0002, 3);
-    default:
-      return "OFF";
+function getDisplayValue(currentMultimeterMode, multimeterNumber) {
+  let cableStatus = "OFF"
+  if (multimeterNumber === 1) {
+    cableStatus = checkMultimeter1Status();
+  } else if (multimeterNumber === 2) {
+    cableStatus = checkMultimeter2Status();
+  } else return cableStatus;
+
+  if (cableStatus === "A") {
+    switch (currentMultimeterMode) {
+      case "OFF":
+        return "OFF";
+      case "DCV 200m":
+        return "0L";
+      case "DCV 2":
+        return "0L";
+      case "DCV 20":
+        return "0L";
+      case "DCV 200":
+        return "0L";
+      case "DCV 1000":
+        return "0L";
+      case "DCA 20":
+        return calculateDisplayValue(getVoltage() / resistance, 20, 1);
+      case "DCA 2":
+        return calculateDisplayValue(getVoltage() / resistance, 2, 2);
+      case "DCA 200m":
+        return calculateDisplayValue(getVoltage() / resistance, 0.2, 3);
+      case "DCA 20m":
+        return calculateDisplayValue(getVoltage() / resistance, 0.02, 3);
+      case "DCA 2m":
+        return calculateDisplayValue(getVoltage() / resistance, 0.002, 3);
+      case "DCA 200u":
+        return calculateDisplayValue(getVoltage() / resistance, 0.0002, 3);
+      default:
+        return "OFF";
+    }
+  }
+  if (cableStatus === "V") {
+    switch (currentMultimeterMode) {
+      case "OFF":
+        return "OFF";
+      case "DCV 200m":
+        return calculateDisplayValue(getVoltage(), 0.2, 3);
+      case "DCV 2":
+        return calculateDisplayValue(getVoltage(), 2, 3);
+      case "DCV 20":
+        return calculateDisplayValue(getVoltage(), 20, 2);
+      case "DCV 200":
+        return calculateDisplayValue(getVoltage(), 200, 1);
+      case "DCV 1000":
+        return calculateDisplayValue(getVoltage(), 1000, 0);
+      case "DCA 20":
+        return "0L";
+      case "DCA 2":
+        return "0L";
+      case "DCA 200m":
+        return "0L";
+      case "DCA 20m":
+        return "0L";
+      case "DCA 2m":
+        return "0L";
+      case "DCA 200u":
+        return "0L";
+      default:
+        return "OFF";
+    }
   }
 }
 
 function calculateDisplayValue(value, range, fix) {
+  console.log("Calculated display value:", value);
   if (value > range) return "0L";
+  if (Number.isNaN(value) || typeof value === 'string') return "OFF";
   return valueToFixed(value, fix);
 }
 
@@ -139,10 +179,14 @@ function getVoltage() {
 
 function updateMultimetersDisplay() {
   if (multimeter1Active) {
-    multimeterDisplay1.textContent = getDisplayValue(currentMultimeterMode);
+    multimeterDisplay1.textContent = getDisplayValue(currentMultimeterMode, 1);
+  } else {
+    multimeterDisplay1.textContent = "OFF";
   }
   if (multimeter2Active) {
-    multimeterDisplay2.textContent = getDisplayValue(currentMultimeterMode2);
+    multimeterDisplay2.textContent = getDisplayValue(currentMultimeterMode2, 2);
+  } else {
+    multimeterDisplay2.textContent = "OFF";
   }
 }
 
@@ -439,6 +483,8 @@ d3.select(document).on("mouseup", (event) => {
         console.log("Multimeter1 mode: " + check1);
         console.log("Multimeter2 mode: " + check2);
         console.log(connections);
+        console.log(turnMultimeters(check1, check2));
+        updateMultimetersDisplay();
       }
     } else {
       cable.remove();
@@ -468,6 +514,18 @@ function checkMultimeter2Status() {
     return "OFF";
   }
 }
+
+function turnMultimeters(check1, check2) {
+  if (check1 === "A" || check1 === "V") {
+    multimeter1Active = true;
+  } else { multimeter1Active = false; }
+  if (check2 === "A" || check2 === "V") {
+     multimeter2Active = true;
+  } else { multimeter2Active = false; }
+  
+  return multimeter1Active;
+}
+
 
 // prawdza tryb lewego multimetra
 function checkMultimeter1Status() {
@@ -514,4 +572,6 @@ function removeConnection(button) {
     d3.select(conn.end).classed("connected", false);
   });
   connections = connections.filter((conn) => !toRemove.includes(conn));
+  turnMultimeters(checkMultimeter1Status(), checkMultimeter2Status());
+  updateMultimetersDisplay();
 }
