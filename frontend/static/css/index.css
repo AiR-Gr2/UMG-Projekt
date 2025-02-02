@@ -143,8 +143,12 @@ input:checked + .slider:before {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  background-color: #c43617;
 }
 
+.roundButton[data-type="black"] {
+  background-color: black;
+}
 .roundButton:hover {
   cursor: pointer;
   background-color: rgb(105, 102, 102);
@@ -188,15 +192,16 @@ input:checked + .slider:before {
   justify-content: space-between;
   align-items: flex-start;
   width: 80%;
-  margin: 20px auto; /* Dodatkowy margines z góry */
-  position: relative; /* Umożliwia kontrolę pozycji */
-  top: 20px; /* Przesunięcie w dół */
+  margin: 20px auto;
+  position: relative;
+  top: 20px;
 }
 
 .imageOverlay {
   position: relative;
-  width: 300px; /* Szerokość kontenera dla każdego multimetru */
-  height: 600px; /* Wysokość kontenera */
+  width: 300px;
+  height: 600px;
+  z-index: 1;
 }
 
 .multimeter1,
@@ -204,8 +209,8 @@ input:checked + .slider:before {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Dopasowanie do kontenera */
-  height: 100%; /* Dopasowanie do kontenera */
+  width: 100%;
+  height: 100%;
   width: 296px;
   height: 588px;
 }
@@ -214,8 +219,8 @@ input:checked + .slider:before {
 .multimeterKnob2 {
   position: absolute;
   transform-origin: center;
-  top: 260px; /* Jednolita pozycja pokrętła */
-  left: 60px; /* Pozycjonowanie pokrętła */
+  top: 260px;
+  left: 60px;
   width: 175px;
   height: 175px;
 }
@@ -224,11 +229,14 @@ input:checked + .slider:before {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%; /* Wypełnia większą część szerokości */
-  height: 300px; /* Większa wysokość dla dużego wykresu */
-  margin-top: 150px; /* Odstęp od sekcji z multimetrami */
-  margin-bottom: 20px; /* Odstęp od ewentualnych kolejnych elementów */
+  width: 50%;
+  height: 300px;
+  margin-top: 150px;
+  margin-bottom: 20px;
   border: 2px solid black;
+  position: relative;
+  z-index: 2000;
+  background-color: white;
 }
 
 /* Styl dla diody LED */
@@ -248,18 +256,38 @@ input:checked + .slider:before {
 
 .multimeter-display {
   position: relative;
-  top: 10.25%; 
+  top: 10.25%;
   width: 70%;
   left: 10%;
   transform: none;
-  font-family: 'Digital-7 Italic', sans-serif;
+  font-family: "Digital-7 Italic", sans-serif;
   font-size: 80px;
   text-align: right;
   margin-left: -5px;
-  color: black; 
-  background-color: #5c6657; 
+  color: black;
+  background-color: #5c6657;
   padding: 5px;
   border-radius: 5px;
-  display: block; 
-  margin-top: 5px; 
+  display: block;
+  margin-top: 5px;
+}
+
+svg.cable-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: visible;
+}
+
+.multimeterButtons {
+  display: flex;
+  position: absolute;
+  bottom: 12%;
+  left: 65%;
+  transform: translateX(-50%);
+  width: 80%;
 }
