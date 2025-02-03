@@ -1,4 +1,5 @@
 # 🏫 UMG-Projekt
+[![eng](https://img.shields.io/badge/lang-eng-red.svg)](https://github.com/AiR-Gr2/UMG-Projekt/blob/bwol/README.eng.md)
 ## ⚡ Warystor
 dane prosze
 
