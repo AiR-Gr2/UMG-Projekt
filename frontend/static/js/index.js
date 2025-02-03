@@ -208,8 +208,8 @@ knob2.addEventListener("mousedown", () => {
     rotationsKnob2++;
   }
   console.log("Current Mode:", currentMode); // sprawdzanko
-  updateMultimetersDisplay();
   updateChartByMode();
+  updateMultimetersDisplay();
 });
 
 multimeterKnob1.addEventListener("mousedown", () => {
@@ -223,6 +223,7 @@ multimeterKnob1.addEventListener("mousedown", () => {
   }
   updateMultimetersDisplay();
   console.log("Current Multimeter1 Mode:", currentMultimeterMode);
+  updateChartData();
 });
 
 multimeterKnob2.addEventListener("mousedown", () => {
@@ -235,6 +236,7 @@ multimeterKnob2.addEventListener("mousedown", () => {
     rotationsMultimeterKnob2++;
   }
   updateMultimetersDisplay();
+  updateChartData();
   console.log("Current Multimeter2 Mode:", currentMultimeterMode2);
 });
 
@@ -288,14 +290,51 @@ chartInstance = new Chart(ctx, {
 
 function updateChartByMode() {
   const title = chartTitles[currentMode] || "Charakterystyka niedostępna";
-  const data = chartData[currentMode] || chartData.OFF;
-  console.log("Setting chart title:", title);
   if (chartInstance) {
-    chartInstance.data.labels = data.labels;
-    chartInstance.data.datasets[0].data = data.data;
     chartInstance.options.plugins.title.text = title;
   }
   chartInstance.update();
+}
+
+function updateChartData() {
+  const current1 = getDisplayValue(currentMultimeterMode, 1); // Pobranie wartości prądu z multimetru 1
+  const current2 = getDisplayValue(currentMultimeterMode2, 2); // Pobranie wartości prądu z multimetru 2
+
+  const current1Value = current1 === "0L" ? 0 : parseFloat(current1);
+  const current2Value = current2 === "0L" ? 0 : parseFloat(current2);
+
+  const fakeData1 = generateFakeData(current1Value);
+  const fakeData2 = generateFakeData(current2Value);
+
+  const data = {
+    labels: fakeData2,
+    datasets: [
+      {
+        label: "Natężenie prądu 1 (I)",
+        data: fakeData1,
+        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  // Zaktualizowanie wykresu z nowymi danymi
+  chartInstance.data = data;
+  chartInstance.update();
+}
+
+function generateFakeData(value) {
+  const fakeData = [];
+  const percentageRange = 0.05;
+
+  const range = value * percentageRange;
+
+  for (let i = -5; i <= 5; i++) {
+    fakeData.push(value + range * i);
+  }
+
+  return fakeData;
 }
 
 // dioda sieci
@@ -318,8 +357,6 @@ function updateLedState() {
     currentMode = mode[0];
     currentMultimeterMode = multimeterMode[0].mode;
     currentMultimeterMode2 = multimeterMode[0].mode;
-
-    updateChartByMode();
 
     document
       .querySelectorAll('input[type="checkbox"]:not(#networkSwitch)')
