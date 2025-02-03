@@ -86,7 +86,7 @@ let multimeter2Active = false;
 let resistance = 1000;
 
 function getDisplayValue(currentMultimeterMode, multimeterNumber) {
-  let cableStatus = "OFF"
+  let cableStatus = "OFF";
   if (multimeterNumber === 1) {
     cableStatus = checkMultimeter1Status();
   } else if (multimeterNumber === 2) {
@@ -158,7 +158,7 @@ function getDisplayValue(currentMultimeterMode, multimeterNumber) {
 function calculateDisplayValue(value, range, fix) {
   console.log("Calculated display value:", value);
   if (value > range) return "0L";
-  if (Number.isNaN(value) || typeof value === 'string') return "OFF";
+  if (Number.isNaN(value) || typeof value === "string") return "OFF";
   return valueToFixed(value, fix);
 }
 
@@ -428,6 +428,8 @@ d3.selectAll(".roundButton")
     if (d.connected && d.connectionCable) {
       removeConnection(this);
       console.log(connections);
+      console.log("Multimeter1 mode: " + checkMultimeter1Status());
+      console.log("Multimeter2 mode: " + checkMultimeter2Status());
     }
   });
 
@@ -518,14 +520,17 @@ function checkMultimeter2Status() {
 function turnMultimeters(check1, check2) {
   if (check1 === "A" || check1 === "V") {
     multimeter1Active = true;
-  } else { multimeter1Active = false; }
+  } else {
+    multimeter1Active = false;
+  }
   if (check2 === "A" || check2 === "V") {
-     multimeter2Active = true;
-  } else { multimeter2Active = false; }
-  
+    multimeter2Active = true;
+  } else {
+    multimeter2Active = false;
+  }
+
   return multimeter1Active;
 }
-
 
 // prawdza tryb lewego multimetra
 function checkMultimeter1Status() {

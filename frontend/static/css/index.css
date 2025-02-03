@@ -144,6 +144,7 @@ input:checked + .slider:before {
   height: 40px;
   border-radius: 50%;
   background-color: #c43617;
+  opacity: 1;
 }
 
 .roundButton[data-type="black"] {
@@ -151,7 +152,7 @@ input:checked + .slider:before {
 }
 .roundButton:hover {
   cursor: pointer;
-  background-color: rgb(105, 102, 102);
+  opacity: 0.8;
 }
 
 .columnFlex2 {
