@@ -379,8 +379,6 @@ function updateLedState() {
 
   knob1.style.pointerEvents = isNetworkOn ? "auto" : "none";
   knob2.style.pointerEvents = isNetworkOn ? "auto" : "none";
-  multimeterKnob1.style.pointerEvents = isNetworkOn ? "auto" : "none";
-  multimeterKnob2.style.pointerEvents = isNetworkOn ? "auto" : "none";
 
   console.log("Network state:", isNetworkOn ? "ON" : "OFF");
 }
