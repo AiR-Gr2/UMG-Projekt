@@ -4,23 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/index.css" />
+    <link
+      href="https://fonts.cdnfonts.com/css/digital-7-mono"
+      rel="stylesheet"
+    />
     <title>Półprzewodnikowe elementy</title>
   </head>
 
   <body>
     <div class="mainBox">
-      <span class="mainBoxName">PÓŁPRZEWODNIKOWE ELEMENTY BEZZŁĄCZOWE</span>
+      <span class="mainBoxName">PÓŁPRZEWODNIKOWE ELEMENTY BEZZŁĄCZOWE</span>  
       <div class="midRow">
         <div class="columnFlex">
           <img class="trojkat" src="/static/img/trojkat.png" />
           <img class="knob1" src="/static/img/knob.png" />
         </div>
         <div class="columnFlex">
-          <span class="desc">Termostat</span>
-          <label class="switch">
-            <input type="checkbox" />
-            <span class="slider round"></span>
-          </label>
           <span class="desc">Oświetlenie fotorezystora</span>
           <label class="switch">
             <input type="checkbox" />
@@ -39,7 +38,25 @@
         </div>
       </div>
       <div class="bottomRow">
-        <div class="columnFlex">
+        <img class="UMGlogo" src="/static/img/logoUMG.png">
+        <div class="rowFlex">
+          <button class="roundButton" data-type="redA" id="btnBoxA"></button>
+          <p class="unit">A</p>
+          <button
+            class="roundButton"
+            data-type="black"
+            id="btnBoxCOM1"
+          ></button>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <button class="roundButton" data-type="redV" id="btnBoxV"></button>
+          <p class="unit">V</p>
+          <button
+            class="roundButton"
+            data-type="black"
+            id="btnBoxCOM2"
+          ></button>
+        </div>
+        <div class="columnFlex3">
           <div class="led" id="networkLed"></div>
           <span class="desc">Sieć</span>
           <label class="switch">
@@ -47,22 +64,31 @@
             <span class="slider round"></span>
           </label>
         </div>
-        <div class="rowFlex">
-          <button class="roundButton"></button>
-          <p class="unit">A</p>
-          <button class="roundButton"></button>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-          <button class="roundButton"></button>
-          <p class="unit">V</p>
-          <button class="roundButton"></button>
-        </div>
       </div>
     </div>
 
     <div class="stuffBox">
       <div class="imageOverlay">
+        <div class="multimeter-display" id="multimeter1-value">OFF</div>
         <img class="multimeter1" src="/static/img/multimeter_no_knob.png" />
         <img class="multimeterKnob1" src="/static/img/sknob.png" />
+        <div class="multimeterButtons">
+          <button
+            class="roundButton"
+            data-type="redA"
+            id="btnMultimeter1A"
+          ></button>
+          <button
+            class="roundButton"
+            data-type="black"
+            id="btnMultimeter1COM"
+          ></button>
+          <button
+            class="roundButton"
+            data-type="redV"
+            id="btnMultimeter1V"
+          ></button>
+        </div>
       </div>
 
       <div class="chartContainer">
@@ -70,12 +96,31 @@
       </div>
 
       <div class="imageOverlay">
+        <div class="multimeter-display" id="multimeter2-value">OFF</div>
         <img class="multimeter2" src="/static/img/multimeter_no_knob.png" />
         <img class="multimeterKnob2" src="/static/img/sknob.png" />
+        <div class="multimeterButtons">
+          <button
+            class="roundButton"
+            data-type="redA"
+            id="btnMultimeter2A"
+          ></button>
+          <button
+            class="roundButton"
+            data-type="black"
+            id="btnMultimeter2COM"
+          ></button>
+          <button
+            class="roundButton"
+            data-type="redV"
+            id="btnMultimeter2V"
+          ></button>
+        </div>
       </div>
     </div>
 
     <script type="module" src="/static/js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
   </body>
 </html>
