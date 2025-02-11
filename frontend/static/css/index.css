@@ -9,29 +9,61 @@ body {
 
 .mainBox {
   margin-top: 40px;
-  border: 2px solid black;
+  border: 4px solid black;
+  border-radius: 20px;
   width: 60%;
   height: 60%;
   justify-content: center;
   justify-items: center;
   display: flex;
   flex-direction: column;
+  box-shadow: 2px 2px 7px 2px gray;
+  background: radial-gradient(white, #f2f2f2);
 }
+
 
 .mainBoxName {
   font-size: 32px;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  filter: drop-shadow(lightgray 3px 3px 2px);
+}
+
+.UMGlogo{
+  width: 13%;
+  margin: 20px;
+  filter: drop-shadow(gray 2px 2px 2px);
 }
 
 .midrow {
-  display: flex;
   flex-direction: row;
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  justify-items: center;
 }
 
 .columnFlex {
-  margin-left: 50px;
+  margin-left: 100px;
+  width: 200px;
+  height: 200px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.columnFlex2 {
+  margin-left: 100px;
+  width: 300px;
+  height: 200px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.columnFlex3 {
+  margin-right: 50px;
   width: 200px;
   height: 200px;
   display: inline-flex;
@@ -40,7 +72,7 @@ body {
 }
 
 .rowFlex {
-  width: 500px;
+  width: 700px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -49,16 +81,19 @@ body {
 .trojkat {
   width: 150px;
   height: 70px;
+  filter: drop-shadow(gray 2px 2px 2px);
 }
 
 .knob1 {
   width: 100px;
   height: 100px;
+  filter: drop-shadow(gray -3px 3px 3px);
 }
 
 .knob2 {
   width: 100px;
   height: 100px;
+  filter: drop-shadow(gray 3px 3px 3px);
 }
 
 .switch {
@@ -67,6 +102,7 @@ body {
   display: inline-block;
   width: 60px;
   height: 34px;
+  filter: drop-shadow(gray 2px 2px 2px);
 }
 
 /* Hide default HTML checkbox */
@@ -102,12 +138,9 @@ body {
 }
 
 input:checked + .slider {
-  background-color: #b05056;
+  background-color: #c43617;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #b05056;
-}
 
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
@@ -130,11 +163,13 @@ input:checked + .slider:before {
   text-align: center;
   margin-bottom: 10px;
   font-size: 20px;
+  filter: drop-shadow(lightgray 1px 1px 1px);
 }
 
 .bottomRow {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .roundButton {
@@ -143,21 +178,20 @@ input:checked + .slider:before {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  background-color: #c43617;
+  opacity: 1;
+  filter: drop-shadow(gray 2px 2px 2px);
 }
 
+.roundButton[data-type="black"] {
+  background-color: black;
+}
 .roundButton:hover {
   cursor: pointer;
-  background-color: rgb(105, 102, 102);
+  opacity: 0.8;
 }
 
-.columnFlex2 {
-  margin-left: 50px;
-  width: 300px;
-  height: 200px;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-}
+
 
 .textGroup {
   display: flex;
@@ -181,6 +215,7 @@ input:checked + .slider:before {
 
 .unit {
   font-size: 20px;
+  filter: drop-shadow(lightgray 2px 2px 2px);
 }
 
 .stuffBox {
@@ -188,15 +223,16 @@ input:checked + .slider:before {
   justify-content: space-between;
   align-items: flex-start;
   width: 80%;
-  margin: 20px auto; /* Dodatkowy margines z góry */
-  position: relative; /* Umożliwia kontrolę pozycji */
-  top: 20px; /* Przesunięcie w dół */
+  margin: 20px auto;
+  position: relative;
+  top: 20px;
 }
 
 .imageOverlay {
   position: relative;
-  width: 300px; /* Szerokość kontenera dla każdego multimetru */
-  height: 600px; /* Wysokość kontenera */
+  width: 300px;
+  height: 600px;
+  z-index: 1;
 }
 
 .multimeter1,
@@ -204,18 +240,19 @@ input:checked + .slider:before {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Dopasowanie do kontenera */
-  height: 100%; /* Dopasowanie do kontenera */
+  width: 100%;
+  height: 100%;
   width: 296px;
   height: 588px;
+  filter: drop-shadow(gray 2px 2px 5px);
 }
 
 .multimeterKnob1,
 .multimeterKnob2 {
   position: absolute;
   transform-origin: center;
-  top: 260px; /* Jednolita pozycja pokrętła */
-  left: 60px; /* Pozycjonowanie pokrętła */
+  top: 260px;
+  left: 60px;
   width: 175px;
   height: 175px;
 }
@@ -224,11 +261,16 @@ input:checked + .slider:before {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%; /* Wypełnia większą część szerokości */
-  height: 300px; /* Większa wysokość dla dużego wykresu */
-  margin-top: 150px; /* Odstęp od sekcji z multimetrami */
-  margin-bottom: 20px; /* Odstęp od ewentualnych kolejnych elementów */
+  width: 50%;
+  height: 300px;
+  margin-top: 150px;
+  margin-bottom: 20px;
   border: 2px solid black;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2000;
+  background-color: white;
+  box-shadow: 2px 2px 7px 2px gray;
 }
 
 /* Styl dla diody LED */
@@ -245,3 +287,42 @@ input:checked + .slider:before {
 .led.on {
   background-color: green;
 }
+
+.multimeter-display {
+  position: relative;
+  top: 10.25%;
+  width: 70%;
+  left: 10%;
+  transform: none;
+  font-family: "Digital-7 Italic", sans-serif;
+  font-size: 80px;
+  text-align: right;
+  margin-left: -5px;
+  color: black;
+  background-color: #5c6657;
+  padding: 5px;
+  border-radius: 5px;
+  display: block;
+  margin-top: 5px;
+}
+
+svg.cable-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: visible;
+}
+
+.multimeterButtons {
+  display: flex;
+  position: absolute;
+  bottom: 12%;
+  left: 65%;
+  transform: translateX(-50%);
+  width: 80%;
+}
+
